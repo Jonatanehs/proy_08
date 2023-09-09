@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+       
+function Restaurante(plato, cantidad, precio) {
+            this.plato = plato;
+            this.cantidad = cantidad;
+            this.precio = precio;
+
+        }
+
+        let platos1 = new Restaurante('Cordero', 4, 80000);
+        console.log({ platos1 });
+
+        let platos2 = new Restaurante('Corrientazo', 2, 12000);
+        console.log({ platos2 });
+
+        let platos3 = new Restaurante('Salmon', 3, 45000);
+        console.log({ platos3 });
+
+        Restaurante.prototype.pedidoRestauante = function () {
+            console.log(`El cliente quiere un ${this.plato} para ${this.cantidad}` +
+                ` a un precio de ${this.precio} por unidad`)
+
+        }
+
+        Restaurante.prototype.valorpedido = function () {
+            let total = this.cantidad * this.precio
+            console.log(`El valor total del pedido es de ${total}`)
+        }
+
+        Restaurante.prototype.descuentoPedido = function () {
+            let total = this.cantidad * this.precio
+            let descuento = total * 0.10;
+            let totalConDescuento = total - descuento;
+
+            if (total >= 50000 && this.cantidad > 2) {
+
+                console.log(`se le aplica el descuento del 10% y el total es  ` +
+                    `${totalConDescuento}`)
+
+            } else {
+
+                console.log(`no se le aplica el descuento el total es` + ` ${total}`)
+
+            }
+
+        }
+
+        platos1.pedidoRestauante();
+        platos1.valorpedido();
+        platos1.descuentoPedido();
+
+        platos2.pedidoRestauante();
+        platos2.valorpedido();
+        platos2.descuentoPedido();
+
+        platos3.pedidoRestauante();
+        platos3.valorpedido();
+        platos3.descuentoPedido()
+
+        function RestauranteDomicilio(plato, cantidad, precio, tiempoEntrega, valorDomicilio) {
+            this.super = Restaurante;
+            this.super(plato, cantidad, precio)
+            this.tiempoEntrega = tiempoEntrega;
+            this.valorDomicilio = valorDomicilio;
+        }
+
+        RestauranteDomicilio.prototype = new Restaurante();
+        RestauranteDomicilio.prototype.constructor = Restaurante
+
+        let platos4 = new RestauranteDomicilio('arroz con leche', 10, 5500,
+            '15 minutos', 4500);
+
+        console.log({ platos4 })
+
+        RestauranteDomicilio.prototype.informacionRestaurante = function () {
+            console.log(`El restaurante amigos unidos vende ${this.plato}` +
+                ` a un precio de ${this.precio} ` + `con un tiempo de entrega ` + 
+                     `${this.tiempoEntrega} ` + `con un excelente precio de domicilio` +
+                     ` ${this.valorDomicilio}`)
+        }
+
+        RestauranteDomicilio.prototype.valorpedido = function(){
+            let total = this.cantidad * this.precio
+            let descuento = total * 0.10;
+            let totalConDescuento = total - descuento + this.valorDomicilio;
+
+            if (total >= 50000 && this.cantidad > 2) {
+
+                console.log(`se le aplica el descuento del 10% con valor de domicilio` +
+                   ` ${this.valorDomicilio} y el total es ${totalConDescuento}`)
+                    
+
+            } else {
+
+                console.log(`no se le aplica el descuento el total es` + ` ${total}`)
+
+            }
+        }
+
+        platos4.informacionRestaurante();
+        platos4.valorpedido(); 
+    </script>
+</body>
+</html>

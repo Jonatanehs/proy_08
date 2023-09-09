@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+function Instructor(nombre, linea, jornada) {
+            this.nombre = nombre;
+            this.linea = linea;
+            this.jornada = jornada;
+        }
+
+        let instructor1 = new Instructor('Orlando', 'software', 'mañana')
+        console.log({ instructor1 })
+
+        let instructor2 = new Instructor('Leonardo', 'Hardware', 'tarde')
+        console.log({ instructor2 })
+
+        let instructor3 = new Instructor('Linda', 'etica', 'noche')
+        console.log({ instructor3 })
+
+        Instructor.prototype.informacionInstructor = function () {
+            console.log(`el instructor ${this.nombre} ` + `de la limea de aprendizaje ${this.linea}` +
+                ` que se encuentra en la jornada ${this.jornada}`)
+        }
+
+        Instructor.prototype.programaFormacion = function () {
+            let aprendizaje = this.linea;
+            switch (aprendizaje) {
+                case "software":
+                    console.log("Programa: Análisis y desarrollo de software");
+                    break;
+
+                case "Hardware":
+                    console.log("Programa: Administración de redes");
+                    break;
+
+                default:
+                    console.log("No se tiene registro calificado para esa línea tecnológica");
+                    break;
+            }
+
+        }
+
+        instructor1.informacionInstructor();
+        instructor1.programaFormacion();
+
+        instructor2.informacionInstructor();
+        instructor2.programaFormacion();
+
+        instructor3.informacionInstructor();
+        instructor3.programaFormacion();
+
+        function InstructorPlanta(nombre, linea, jornada, fechaDeVinculacion) {
+            this.super = Instructor
+            this.super(nombre, linea, jornada)
+            this.fechaDeVinculacion = fechaDeVinculacion;
+        }
+
+        InstructorPlanta.prototype = new Instructor();
+        InstructorPlanta.prototype.constructor = Instructor;
+
+        let instructor4 = new InstructorPlanta('Andres', 'Software', 'mañana', 2018);
+
+        console.log({ instructor4 })
+
+        InstructorPlanta.prototype.informacionInstructor1 = function () {
+            console.log(`el instructor ${this.nombre} ` + `de la linea de aprendizaje ${this.linea}` +
+                ` que se encuentra en la jornada ${this.jornada}` + ` lleva desde ${this.fechaDeVinculacion}`);
+        }
+
+        InstructorPlanta.prototype.tiempoVinculacion = function () {
+            let annio = new Date().getFullYear();
+            let totalAnnio = annio - this.fechaDeVinculacion;
+            if (totalAnnio > 0) {
+                let meses = totalAnnio * 12
+                console.log(`El instructor lleva ${meses} meses de vinculacion`)
+            }
+        }
+
+        instructor4.informacionInstructor1();
+        instructor4.tiempoVinculacion();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /*
+                const aprendiz1 = {
+                    nombre: 'johana',
+                    documento: '1223423423',
+                    edad: 12,
+        
+                    saludar : function ( ) {
+                        console.log(`Hola, me llamo ${this.nombre}` + " " + `y tengo ${this.edad} años`);
+                    },
+        
+                    despedida : function ( ){
+                        console.log(`Feliz aprendizaje les desea ${this.nombre}`);
+                    }
+                }
+        
+                console.log(`Tarea 1`);
+        
+                console.log({aprendiz1});
+        
+                console.log(`Tarea 2`);
+        
+                aprendiz1.saludar();
+                aprendiz1.despedida();
+        
+                console.log(`Tarea 3`);
+        
+                aprendiz1.nombre = 'johana bernal';
+                aprendiz1.saludar();
+        
+                console.log(`Tarea 4`);
+        
+                aprendiz1['apellidos'] = 'cordoba';
+                aprendiz1['nombre'] = 'german antonio';
+                aprendiz1.saludar();
+        
+                console.log(`Tarea 5`);
+        
+                aprendiz1['edad'] = 24;
+                aprendiz1.saludar = function(){
+                    console.log(`Hola me llamo ${this.nombre} ${this.apellidos}` + " " + `y tengo ${this.edad}`);
+                }
+                aprendiz1.saludar();
+        
+                console.log(`Tarea 6`);
+        
+                const ficha = 'ficha';
+                const numFicha = '2798618';
+                const progFicha = 'ADSO';
+                aprendiz1[ficha] = numFicha;
+                aprendiz1['programa'] = progFicha;
+                aprendiz1.estudiar = function(){
+                    console.log(`Estoy matriculado en la ficha ${this.ficha}` + `y cursando 1er trimestre del programa ${this.programa}!`);
+                }
+                aprendiz1.estudiar();
+        */
+        /*
+                function Aprendiz(documento, nombres, apellidos, edad, ficha, programa){
+                    this.documento = documento;
+                    this.nombres = nombres;
+                    this.apellidos = apellidos;
+                    this.edad = edad;
+                    this.ficha = ficha;
+                    this.programa = programa;
+                }
+        
+                let aprendiz1 = new Aprendiz('1234567', 'german antonio', 'cordoba', 24, '2798618', 'ADSO');
+        
+                console.log({aprendiz1});
+        
+                /*const aprendizPrototype = {
+                    saludar(){
+                        console.log(`Hola, me llamo ${this.nombres}` + " " + `y tengo ${this.edad} años`);
+                    },
+        
+                    despedida(){
+                        console.log(`Feliz aprendizaje! les desea ${this.nombres}` + " " + `${this.apellidos}`);
+                    },
+        
+                    estudiar(){
+                        console.log(`Matriculado en la ficha ${this.ficha}` + " " + `y cursando 1er trimestre del programa ${this.programa}!`);
+                    }
+                }
+        
+                Object.assign(Aprendiz.prototype, aprendizPrototype);*/
+        /*
+
+        Aprendiz.prototype.saludar = function(){
+            console.log(`Hola, me llamo ${this.nombres}` +
+            `y tengo ${this.edad} años`);
+        }
+
+        Aprendiz.prototype.despedida = function(){
+            console.log (`Feliz aprendizaje! les desea ${this.nombres}` + 
+            `${this.apellidos}`);
+        }
+
+        Aprendiz.prototype.estudiar = function(){
+            console.log(`matriculado en la ficha${this.ficha}` + 
+                       `y cursando 1er trimestre del programa ${this.programa}!`);
+        }
+
+    function AprendizEtapaPractica(documento, nombres, apellidos, edad,
+                                 ficha, programa, empresa, funcion){
+
+        this.super = Aprendiz;
+        this.super(documento, nombres, apellidos, edad, ficha, programa);
+        this.empresa = empresa;
+        this.funcion = funcion;
+    }
+
+    AprendizEtapaPractica.prototype = new Aprendiz();
+    AprendizEtapaPractica.prototype.constructor = Aprendiz;
+
+    AprendizEtapaPractica.prototype.estudiar = function(){
+        console.log(`termine etapa lectiva y me emcuentro en etapa productiva`);
+    }
+
+    AprendizEtapaPractica.prototype.trabajar = function(){
+        console.log(`Estoy trabajndo en la empresa${this.empresa}`+
+        `cumpliendo funciones de ${this.funcion}`);
+    }
+
+    let aprendiz2 = new AprendizEtapaPractica('5365374745758', 'Sandra Patricia',
+                                            'Sandoval', 24, '2798618', 'ADSO',
+                                            'IED Pompilo Martinez','Instructora');
+    console.log({aprendiz2});
+
+    aprendiz2.estudiar();
+    aprendiz2.trabajar();
+*/
+
+        function Automovil(marca, linea, modelo, cilindraje, precio) {
+            this.marca = marca;
+            this.linea = linea;
+            this.modelo = modelo;
+            this.cilindraje = cilindraje;
+            this.precio = precio;
+        }
+
+        let auto1 = new Automovil('chevrolet', 'camaro', 2024, 6, 257_020_000);
+        console.log({ auto1 });
+
+        let auto2 = new Automovil('mercedes', 'benz c', 2017, 4, 97_800_000);
+        console.log({ auto2 });
+
+        let auto3 = new Automovil('BMW', 'M5', 2019, 8, 250_000_000);
+        console.log({ auto3 });
+
+        Automovil.prototype.informacionVehiculo = function () {
+            console.log(`el vehiculo de marca ${this.marca}` + ` de la linea ${this.linea}\n` +
+                `es un modelo ${this.modelo}` + ` que contiene un motor con cilindraje de ${this.cilindraje}\n` +
+                `tiene como precio de ${this.precio}`)
+        }
+
+        Automovil.prototype.revisionTecnicoMecanica = function () {
+            let anionew = new Date().getFullYear();
+            let antigueda = anionew - this.modelo
+            if (antigueda > 5) {
+                console.log(`este modelo tiene ${antigueda} año necesita tecnomecanica`)
+            } else {
+                console.log(`este modelo tiene ${antigueda} años no necesita tecnomecanica`)
+            }
+        }
+
+        Automovil.prototype.nivelGasolina = function () {
+            let gasolina = Math.random() * 100
+            if (gasolina > 1 && gasolina <= 100) {
+                let nivelGasolina = Math.floor(gasolina);
+                console.log(`el carro tiene un ${nivelGasolina}` + ` % de gasolina`)
+            }
+
+        }
+
+
+        auto1.informacionVehiculo();
+        auto1.revisionTecnicoMecanica();
+        auto1.nivelGasolina();
+
+        auto2.informacionVehiculo();
+        auto2.revisionTecnicoMecanica();
+        auto2.nivelGasolina();
+
+        auto3.informacionVehiculo();
+        auto3.revisionTecnicoMecanica();
+        auto3.nivelGasolina();
+
+
+        function Sedan(marca, linea, modelo, cilindraje, precio,
+            numeroPasajeros, tipoCaja, numeroCinturonesSeguridad) {
+            this.super = Automovil
+            this.super(marca, linea, modelo, cilindraje, precio)
+            this.numeroPasajeros = numeroPasajeros;
+            this.tipoCaja = tipoCaja;
+            this.numeroCinturonesSeguridad = numeroCinturonesSeguridad;
+        }
+
+        Sedan.prototype = new Automovil();
+        Sedan.prototype.constructor = Automovil;
+
+        let auto4 = new Sedan('renault', 'twingo', 2008, 4, 175000000, 4, 'manual', 4)
+
+        console.log({ auto4 })
+
+        Sedan.prototype.informacionVehiculo = function () {
+            console.log(`el vehiculo de marca ${this.marca}` + ` de la linea ${this.linea}\n` +
+                `es un modelo ${this.modelo}` + ` que contiene un motor con cilindraje de ${this.cilindraje}\n` +
+                `tiene como precio de ${this.precio}\n` + `contiene ${this.numeroPasajeros} de pasajeros` +
+                ` y una caja de cambios ${this.tipoCaja}\n`)
+        }
+
+        Sedan.prototype.numeroCinturonesSeguridad1 = function () {
+
+                console.log(`Este carro tiene ${this.numeroCinturonesSeguridad} cinturones`)
+            }
+        
+
+        auto4.informacionVehiculo();
+        auto4.numeroCinturonesSeguridad1();
+        auto4.nivelGasolina();
+    </script>
+</body>
+
+</html>
