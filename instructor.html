@@ -66,7 +66,7 @@ function Instructor(nombre, linea, jornada) {
         InstructorPlanta.prototype = new Instructor();
         InstructorPlanta.prototype.constructor = Instructor;
 
-        let instructor4 = new InstructorPlanta('Andres', 'Software', 'mañana', 2018);
+        let instructor4 = new InstructorPlanta('Andres', 'Software', 'mañana', '2019-10-30');
 
         console.log({ instructor4 })
 
@@ -76,13 +76,13 @@ function Instructor(nombre, linea, jornada) {
         }
 
         InstructorPlanta.prototype.tiempoVinculacion = function () {
-            let annio = new Date().getFullYear();
-            let totalAnnio = annio - this.fechaDeVinculacion;
-            if (totalAnnio > 0) {
-                let meses = totalAnnio * 12
-                console.log(`El instructor lleva ${meses} meses de vinculacion`)
+            let now = new Date();
+            let fechaVinculacion = new Date(this.fechaDeVinculacion);
+            let timeDiff = now - fechaVinculacion;
+            let monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
+                console.log(`El instructor lleva ${monthsDiff} meses de vinculacion`)
             }
-        }
+        
 
         instructor4.informacionInstructor1();
         instructor4.tiempoVinculacion();
