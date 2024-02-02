@@ -1,52 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
     <script>
 
-       
-function Restaurante(plato, cantidad, precio) {
+// se crea una clase llamada Restaurante con nuevas propiedades 
+        function Restaurante(plato, cantidad, precio) {
+
+// se le dara valor a los atributos de la clase 
             this.plato = plato;
             this.cantidad = cantidad;
             this.precio = precio;
 
         }
 
+// platos1 contendra una nueva instancia de la clase Restaurante con atributos del objeto 
         let platos1 = new Restaurante('Cordero', 4, 80000);
+
+// se imprime todo lo que esta en platos1 
         console.log({ platos1 });
 
+// platos2 contendra una nueva instancia de clase Restaurante con atributos del objeto 
         let platos2 = new Restaurante('Corrientazo', 2, 12000);
+
+// imprime en consola todo lo que esta en platos2 
         console.log({ platos2 });
 
+// platos3 contendra una nueva instancia de la clase Restaurante con atributos del objeto 
         let platos3 = new Restaurante('Salmon', 3, 45000);
+
+// se imprime lo que esta en platos 3 
         console.log({ platos3 });
 
+// se crea un metodo de la clase Restaurante 
         Restaurante.prototype.pedidoRestauante = function () {
+
+// se imprime un mensaje en consola llamando los atributos de la clase
             console.log(`El cliente quiere un ${this.plato} para ${this.cantidad}` +
                 ` a un precio de ${this.precio} por unidad`)
 
         }
 
+// se crea un nuevo metodo de la clase llamado valorpedido 
         Restaurante.prototype.valorpedido = function () {
+
+// total contendra la cantidad por el precio 
             let total = this.cantidad * this.precio
+
+// se imprime un mensaje en consola 
             console.log(`El valor total del pedido es de ${total}`)
         }
 
+// se crea un metodo de la clase Restaurante llamada descuentoPedido 
         Restaurante.prototype.descuentoPedido = function () {
+
+// total contendra la cantidad por el precio 
             let total = this.cantidad * this.precio
+
+// descuento contendra el total por 0.10 
             let descuento = total * 0.10;
+
+// totalConDescuento contendra el resultado del total menos el descuento 
             let totalConDescuento = total - descuento;
 
+// si el total es mayor o igual a 50000 y cantidad mayor a 2 ejecuta 
             if (total >= 50000 && this.cantidad > 2) {
 
                 console.log(`se le aplica el descuento del 10% y el total es  ` +
                     `${totalConDescuento}`)
 
+// si la condicion no se cumple, imprime un mensaje en consola 
             } else {
 
                 console.log(`no se le aplica el descuento el total es` + ` ${total}`)
@@ -55,60 +85,90 @@ function Restaurante(plato, cantidad, precio) {
 
         }
 
+// se ejecutara los metodos de platos1
         platos1.pedidoRestauante();
         platos1.valorpedido();
         platos1.descuentoPedido();
 
+// se ejecutara los metodos de platos2
         platos2.pedidoRestauante();
         platos2.valorpedido();
         platos2.descuentoPedido();
 
+// se ejecutara los metodos de platos3
         platos3.pedidoRestauante();
         platos3.valorpedido();
         platos3.descuentoPedido()
 
+// se crea una nueva clase RestauranteDomicilio con nuevas propiedades 
         function RestauranteDomicilio(plato, cantidad, precio, tiempoEntrega, valorDomicilio) {
+
+// se instancia la clase Restaurante 
             this.super = Restaurante;
+
+// se llama las propiedades de la clase Restaurante
             this.super(plato, cantidad, precio)
+
+// se asigna el valor a las propiedades 
             this.tiempoEntrega = tiempoEntrega;
             this.valorDomicilio = valorDomicilio;
         }
 
+// RestauranteDomicilio crea una nueva instancia de la clase Restaurante 
         RestauranteDomicilio.prototype = new Restaurante();
+
+// se crea una herencia de la clase Restaurante 
         RestauranteDomicilio.prototype.constructor = Restaurante
 
+
+// platos4 contendra una nueva instancia de clase con atributos de este objeto
         let platos4 = new RestauranteDomicilio('arroz con leche', 10, 5500,
             '15 minutos', 4500);
 
+// se imprime un mensaje en consola todo lo que contiene platos4 
         console.log({ platos4 })
 
+// se crea un nuevo metodo de la clase RestauranteDomicilio informacionRestaurante
         RestauranteDomicilio.prototype.informacionRestaurante = function () {
+
+// se imprime un mensaje en la consola 
             console.log(`El restaurante amigos unidos vende ${this.plato}` +
-                ` a un precio de ${this.precio} ` + `con un tiempo de entrega ` + 
-                     `${this.tiempoEntrega} ` + `con un excelente precio de domicilio` +
-                     ` ${this.valorDomicilio}`)
+                ` a un precio de ${this.precio} ` + `con un tiempo de entrega ` +
+                `${this.tiempoEntrega} ` + `con un excelente precio de domicilio` +
+                ` ${this.valorDomicilio}`)
         }
 
-        RestauranteDomicilio.prototype.valorpedido = function(){
+// se crea un nuevo metodo de la clase RestauranteDomicilio llamada valorpedido
+        RestauranteDomicilio.prototype.valorpedido = function () {
+
+// total contendra lo que quede cantidad por precio 
             let total = this.cantidad * this.precio
+
+// descuento contiene el total multiplicado por 0.10 
             let descuento = total * 0.10;
+
+// totalConDescuento contiene el total menos el descuento mas valorDomicilio 
             let totalConDescuento = total - descuento + this.valorDomicilio;
 
+// si total es mayor o igual a 50000 y cantidad mayor que dos 
             if (total >= 50000 && this.cantidad > 2) {
 
+// se imprime un mensaje en consola 
                 console.log(`se le aplica el descuento del 10% con valor de domicilio` +
-                   ` ${this.valorDomicilio} y el total es ${totalConDescuento}`)
-                    
+                    ` ${this.valorDomicilio} y el total es ${totalConDescuento}`)
 
+// si la condicion es falsa ejecutara un mensaje en consola 
             } else {
 
                 console.log(`no se le aplica el descuento el total es` + ` ${total}`)
 
             }
         }
-
+    
+// se ejecutara los metodos con los atributos de platos4 
         platos4.informacionRestaurante();
         platos4.valorpedido(); 
     </script>
 </body>
+
 </html>

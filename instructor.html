@@ -1,46 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 
     <script>
 
-function Instructor(nombre, linea, jornada) {
+        // se crea una nueva clase llamada Instructor con propiedades
+        function Instructor(nombre, linea, jornada) {
+
+            // se le agrega valores a los atributos 
             this.nombre = nombre;
             this.linea = linea;
             this.jornada = jornada;
         }
 
+        // instructor1 contendra una instancia de la clase Instructor con Atributos del objeto 
         let instructor1 = new Instructor('Orlando', 'software', 'mañana')
+
+        // se imprimira en consola todo lo que esta en el instructor1 
         console.log({ instructor1 })
 
+        // instructor 2 contendra una nueva instacia de la clase con atributos del objeto
         let instructor2 = new Instructor('Leonardo', 'Hardware', 'tarde')
+
+        // se imprime lo que contenga instructor2 
         console.log({ instructor2 })
 
+        // instructor 3 contendra una nueva instancia de la clase con atributos del objeto 
         let instructor3 = new Instructor('Linda', 'etica', 'noche')
+
+        // se imprime en consola lo que se contenga en el instructor3 
         console.log({ instructor3 })
 
+        // se crea un nuevo metodo de la clase Instructor llamado informacionInstructor 
         Instructor.prototype.informacionInstructor = function () {
+
+            // se imprimira un mensaje en la consola llamando atributos de la clase 
             console.log(`el instructor ${this.nombre} ` + `de la linea de aprendizaje ${this.linea}` +
                 ` que se encuentra en la jornada ${this.jornada}`)
         }
 
+        // se crea un nuevo metodo de la clase Instructor llamado programaFormacion 
         Instructor.prototype.programaFormacion = function () {
+
+            // aprendizaje contendra lo que esta en this.linea
             let aprendizaje = this.linea;
+
+            // se creara un switch usando como exprecion aprendizaje 
             switch (aprendizaje) {
+
+                // si el caso es softwere imprimira un mensaje en la consola y para la ejecucion 
                 case "software":
                     console.log("Programa: Análisis y desarrollo de software");
                     break;
 
+                // si el caso es hardware imprimira un mensaje en la consola y para la ejecucion 
                 case "Hardware":
                     console.log("Programa: Administración de redes");
                     break;
 
+                // si ninguno de los casos se cumple imprimira un mensaje distinto en consola 
                 default:
                     console.log("No se tiene registro calificado para esa línea tecnológica");
                     break;
@@ -48,45 +74,76 @@ function Instructor(nombre, linea, jornada) {
 
         }
 
+        // se ejecutara los metodos de instructor1
         instructor1.informacionInstructor();
         instructor1.programaFormacion();
 
+        // se ejecutara los metodos de instructor2
         instructor2.informacionInstructor();
         instructor2.programaFormacion();
 
+        // se ejecutara los metodos de instructor3
         instructor3.informacionInstructor();
         instructor3.programaFormacion();
 
+        // se crea una nueva clase InstructorPlanta con propiedades
         function InstructorPlanta(nombre, linea, jornada, fechaDeVinculacion) {
+
+            // se llama a la clase Instructor creando un nuevo metodo constructor
             this.super = Instructor
+
+            // se llama las propiedades que estan en la clase Instructor
             this.super(nombre, linea, jornada)
+
+            // se le agrega un valor al atributo 
             this.fechaDeVinculacion = fechaDeVinculacion;
         }
 
+        // se crea una nueva instancia de la clase Instructor que estaran en InstructorPlanta
         InstructorPlanta.prototype = new Instructor();
+
+        // se crea una herencia de clase de la clase Instructor 
         InstructorPlanta.prototype.constructor = Instructor;
 
+        // en el instructor4 contendra una nueva instancia de la clase InstructorPlanta con propiedades 
         let instructor4 = new InstructorPlanta('Andres', 'Software', 'mañana', '2019-10-30');
 
+        // se imprime en consola todo lo que esta en instructor4 
         console.log({ instructor4 })
 
+        // se crea un metodo de la clase InstructorPlanta llamada informacionInstructor 
         InstructorPlanta.prototype.informacionInstructor1 = function () {
+
+            // se imprime el mensaje en consola llamando a los atributos de la clase 
             console.log(`el instructor ${this.nombre} ` + `de la linea de aprendizaje ${this.linea}` +
                 ` que se encuentra en la jornada ${this.jornada}` + ` lleva desde ${this.fechaDeVinculacion}`);
         }
 
+        // se imprime el mensaje en consola llamando a los atributos de la clase
         InstructorPlanta.prototype.tiempoVinculacion = function () {
-            let now = new Date();
-            let fechaVinculacion = new Date(this.fechaDeVinculacion);
-            let timeDiff = now - fechaVinculacion;
-            let monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
-                console.log(`El instructor lleva ${monthsDiff} meses de vinculacion`)
-            }
-        
 
+            // se crea una variable now que contendra una nueva fecha 
+            let now = new Date();
+
+            // fechaVinculacion contendra una nueva fecha que este en this.fechaDeVinculacion 
+            let fechaVinculacion = new Date(this.fechaDeVinculacion);
+
+            // timeDiff contendra lo que resulte de now menos fechaVinculacion 
+            let timeDiff = now - fechaVinculacion;
+/* 
+se divide lo que contega timeDiff con el resultado que dara la operacion que es el 
+resultado en meses, se redondeara a un numero entero y almacenara en monthsDiff */
+            let monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
+
+// se imprime un mensaje en consola 
+            console.log(`El instructor lleva ${monthsDiff} meses de vinculacion`)
+        }
+
+// se llama el metodo de la clase con los atributos instructor4 
         instructor4.informacionInstructor1();
         instructor4.tiempoVinculacion();
 
     </script>
 </body>
+
 </html>

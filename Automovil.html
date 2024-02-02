@@ -141,7 +141,10 @@
     aprendiz2.trabajar();
 */
 
+// se crea una funcion constructora de la clase Automovil que tendra  distintas propiedades 
         function Automovil(marca, linea, modelo, cilindraje, precio) {
+
+// se le asigna el valor a las propiedades
             this.marca = marca;
             this.linea = linea;
             this.modelo = modelo;
@@ -149,83 +152,130 @@
             this.precio = precio;
         }
 
+// se crea una variable que contendra una instancia de la clase Automovil que contendra los atributos del objeto 
         let auto1 = new Automovil('chevrolet', 'camaro', 2024, 6, 257_020_000);
+
+// se imprimira en la consola todo lo que contenga la variable auto1 
         console.log({ auto1 });
 
+// se crea una variable que contendra una instancia de la clase Automovil que contendra los atributos del objeto 
         let auto2 = new Automovil('mercedes', 'benz c', 2017, 4, 97_800_000);
+
+// se imprimira en la consola todo lo que contenga la variable auto2 
         console.log({ auto2 });
 
+// se crea una variable que contendra una instancia de la clase Automovil que contendra los atributos del objeto 
         let auto3 = new Automovil('BMW', 'M5', 2019, 8, 250_000_000);
+
+// se imprimira en la consola todo lo que contenga la variable auto2 
         console.log({ auto3 });
 
+// se crea un metodo de la clase Automovil llamado informacionVehiculo
         Automovil.prototype.informacionVehiculo = function () {
+
+// se imprime un mensaje en la consola cuando el metodo sea llamado 
             console.log(`el vehiculo de marca ${this.marca}` + ` de la linea ${this.linea}\n` +
                 `es un modelo ${this.modelo}` + ` que contiene un motor con cilindraje de ${this.cilindraje}\n` +
                 `tiene como precio de ${this.precio}`)
         }
 
+// se crea un nuevo metodo de la clase Automovil llamado revisionTecnicoMecanica 
         Automovil.prototype.revisionTecnicoMecanica = function () {
+
+// la variable anionew contendra una nueva fecha que tendra el año complecto actual 
             let anionew = new Date().getFullYear();
+
+// la variable antigueda contendra anionew menos lo que esta en this.modelo 
             let antigueda = anionew - this.modelo
+
+// si antigueda es mayor a 5 ejecuta y se imprime un mensaje en consola 
             if (antigueda > 5) {
                 console.log(`este modelo tiene ${antigueda} año necesita tecnomecanica`)
+// si es falso ejecutara e imprimira un mensaje en consola 
             } else {
                 console.log(`este modelo tiene ${antigueda} años no necesita tecnomecanica`)
             }
         }
 
+// se crea un nuevo metodo de la clase Automovil llamado nivelGasolina 
         Automovil.prototype.nivelGasolina = function () {
+
+// se crea una variable llamada gasolina que contendra numeros del 0 hasta el 100
             let gasolina = Math.random() * 100
+
+// si gasolina es mayor que 1 y menor igual a 100 ejecuta 
             if (gasolina > 1 && gasolina <= 100) {
+
+// se crea una nueva variable llamada nivelGasolina que contendra un numero entero de gasolina
                 let nivelGasolina = Math.floor(gasolina);
+
+// se imprime un mensaje en la consola 
                 console.log(`el carro tiene un ${nivelGasolina}` + ` % de gasolina`)
             }
 
         }
 
-
+// esto ejecutara los metodos que contiene los atributos de auto1 
         auto1.informacionVehiculo();
         auto1.revisionTecnicoMecanica();
         auto1.nivelGasolina();
 
+// esto ejecutara los metodos que contiene los atributos de auto2
         auto2.informacionVehiculo();
         auto2.revisionTecnicoMecanica();
         auto2.nivelGasolina();
 
+// esto ejecutara los metodos que contiene los atributos de auto3
         auto3.informacionVehiculo();
         auto3.revisionTecnicoMecanica();
         auto3.nivelGasolina();
 
-
+// se crea una herencia de clase llamada Sedan con nuevas propiedades
         function Sedan(marca, linea, modelo, cilindraje, precio,
             numeroPasajeros, tipoCaja, numeroCinturonesSeguridad) {
+
+// se crea un metodo constructor y llama a la clase Automovil 
             this.super = Automovil
+
+// se llama a las propiedades de la clase Automovil 
             this.super(marca, linea, modelo, cilindraje, precio)
+
+// se le agregan valor a los nuevos atributos de la clase Sedan 
             this.numeroPasajeros = numeroPasajeros;
             this.tipoCaja = tipoCaja;
             this.numeroCinturonesSeguridad = numeroCinturonesSeguridad;
         }
 
+// se crea una estancia de clase Automovil que estara en Sedan 
         Sedan.prototype = new Automovil();
+
+// Sedan se convertira en una herencia de la clase Automovil
         Sedan.prototype.constructor = Automovil;
 
+// auto4 contendra una nueva estancia de clase con los atributos de esta 
         let auto4 = new Sedan('renault', 'twingo', 2008, 4, 175000000, 4, 'manual', 4)
 
+// se imprimira en consola lo que contenga en auto4 
         console.log({ auto4 })
 
+// se crea un nuevo metodo de la clase Sedan llamada informacionVehiculo 
         Sedan.prototype.informacionVehiculo = function () {
+
+// se imprimira en consola un mensaje llamando los atributos de la clase 
             console.log(`el vehiculo de marca ${this.marca}` + ` de la linea ${this.linea}\n` +
                 `es un modelo ${this.modelo}` + ` que contiene un motor con cilindraje de ${this.cilindraje}\n` +
                 `tiene como precio de ${this.precio}\n` + `contiene ${this.numeroPasajeros} de pasajeros` +
                 ` y una caja de cambios ${this.tipoCaja}\n`)
         }
 
+// se crea un nuevo metodo de la clase Sedan llamado numeroCinturonesSeguridad 
         Sedan.prototype.numeroCinturonesSeguridad1 = function () {
 
+// se imprimira un mensaje en la consola 
                 console.log(`Este carro tiene ${this.numeroCinturonesSeguridad} cinturones`)
             }
         
-
+// se llama y se ejecuta los metodos
         auto4.informacionVehiculo();
         auto4.numeroCinturonesSeguridad1();
         auto4.nivelGasolina();
